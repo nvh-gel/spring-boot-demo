@@ -3,7 +3,17 @@ plugins {
 }
 
 group = 'org.eden'
-version = '1.0-SNAPSHOT'
+
+Properties versions = new Properties()
+file("versions.properties").withReader {
+    versions.load(it)
+}
+Date date = new Date()
+version = versions.app + date.format("yyyyMMdd")
+
+jar {
+    enabled = false
+}
 
 repositories {
     mavenCentral()
