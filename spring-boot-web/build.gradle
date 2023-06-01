@@ -1,0 +1,11 @@
+group = 'org.eden.web'
+
+jar {
+    enabled = true
+}
+
+dependencies {
+    implementation "org.yaml:snakeyaml:${snakeyaml}"
+    implementation "org.springframework.boot:spring-boot-starter-web:${springBoot}"
+    testImplementation "org.springframework.boot:spring-boot-starter-test:${springBoot}"
+}

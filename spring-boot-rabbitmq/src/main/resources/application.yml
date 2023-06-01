@@ -1,0 +1,14 @@
+#file: noinspection undefined
+spring:
+  rabbitmq:
+    host: ${RABBITMQ_HOST}
+    virtual-host: ${RABBITMQ_USER}
+    port: 5672
+    username: ${RABBITMQ_USER}
+    password: ${RABBITMQ_PASSWORD}
+    queue:
+      name: nvh-test
+    exchange:
+      name: nvh-test-exchange
+    routing:
+      key: nvh-test-routing-key

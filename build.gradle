@@ -19,6 +19,10 @@ subprojects {
         mavenCentral()
     }
 
+    jar {
+        enabled = false
+    }
+
     Date date = new Date()
     project.version = "${app}" + '.' + date.format("yyyyMMdd")
 
