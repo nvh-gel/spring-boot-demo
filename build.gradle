@@ -4,13 +4,6 @@ plugins {
 
 group = 'org.eden'
 
-Properties versions = new Properties()
-file("versions.properties").withReader {
-    versions.load(it)
-}
-Date date = new Date()
-version = versions.app + date.format("yyyyMMdd")
-
 jar {
     enabled = false
 }
@@ -19,11 +12,28 @@ repositories {
     mavenCentral()
 }
 
-dependencies {
-    testImplementation platform('org.junit:junit-bom:5.9.1')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
-}
+subprojects {
+    apply plugin: "java"
 
-test {
-    useJUnitPlatform()
+    repositories {
+        mavenCentral()
+    }
+
+    Date date = new Date()
+    project.version = "${app}" + '.' + date.format("yyyyMMdd")
+
+    dependencies {
+        implementation "org.projectlombok:lombok:${lombok}"
+        implementation "org.mapstruct:mapstruct:${mapstruct}"
+
+        annotationProcessor "org.projectlombok:lombok:${lombok}"
+        annotationProcessor "org.mapstruct:mapstruct-processor:${mapstruct}"
+
+        testImplementation platform("org.junit:junit-bom:${junit}")
+        testImplementation 'org.junit.jupiter:junit-jupiter'
+    }
+
+    test {
+        useJUnitPlatform()
+    }
 }
